@@ -1,3 +1,5 @@
+import { useActiveWeb3React } from '.'
+import { ChainId } from '@uniswap/sdk'
 import { BigNumber } from 'ethers'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -8,8 +10,17 @@ import useCurrentBlockTimestamp from './useCurrentBlockTimestamp'
 export default function useTransactionDeadline(): BigNumber | undefined {
   const ttl = useSelector<AppState, number>(state => state.user.userDeadline)
   const blockTimestamp = useCurrentBlockTimestamp()
+  const { chainId } = useActiveWeb3React()
+
   return useMemo(() => {
-    if (blockTimestamp && ttl) return blockTimestamp.add(ttl)
+    if (blockTimestamp && ttl) {
+      if (chainId === ChainId.PLATON_TESTNET) {
+        return blockTimestamp.add(ttl * 1000)
+      } else {
+        return blockTimestamp.add(ttl)
+      }
+    }
+
     return undefined
   }, [blockTimestamp, ttl])
 }
