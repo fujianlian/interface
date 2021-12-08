@@ -30,31 +30,45 @@ export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
-// export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
-
-// export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
-
-// const UNI_ADDRESS = '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
-
-export const GOVERNANCE_ADDRESS = '0xB770FB03D9489060fD620fC6B07ae2b468afc72A'
-
-export const TIMELOCK_ADDRESS = '0x13d049d9fDd3b75dE23ab4849C8EEe7E7a2ea2c4'
-
-const UNI_ADDRESS = '0xDFA36286675c8a03050b63F23D79786A067E0d24'
-
 export const UNI: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.KOVAN]: new Token(ChainId.KOVAN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.PLATON_TESTNET]: new Token(ChainId.PLATON_TESTNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, getUniAddress(ChainId.MAINNET), 18, 'UNI', 'Uniswap'),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, getUniAddress(ChainId.RINKEBY), 18, 'UNI', 'Uniswap'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, getUniAddress(ChainId.ROPSTEN), 18, 'UNI', 'Uniswap'),
+  [ChainId.GÖRLI]: new Token(ChainId.GÖRLI, getUniAddress(ChainId.GÖRLI), 18, 'UNI', 'Uniswap'),
+  [ChainId.KOVAN]: new Token(ChainId.KOVAN, getUniAddress(ChainId.KOVAN), 18, 'UNI', 'Uniswap'),
+  [ChainId.PLATON_TESTNET]: new Token(ChainId.PLATON_TESTNET, getUniAddress(ChainId.PLATON_TESTNET), 18, 'UNI', 'Uniswap')
 }
 
-export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
-  [UNI_ADDRESS]: 'UNI',
-  [GOVERNANCE_ADDRESS]: 'Governance',
-  [TIMELOCK_ADDRESS]: 'Timelock'
+export function getUniAddress(chainId: ChainId): string {
+  if (chainId === ChainId.PLATON_TESTNET) {
+    return '0xDFA36286675c8a03050b63F23D79786A067E0d24'
+  }
+  return '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984'
+}
+
+export function getGovernAddress(chainId: ChainId): string {
+  if (chainId === ChainId.PLATON_TESTNET) {
+    return '0xB770FB03D9489060fD620fC6B07ae2b468afc72A'
+  }
+  return '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
+}
+
+export function getTimelock(chainId: ChainId): string {
+  if (chainId === ChainId.PLATON_TESTNET) {
+    return '0x13d049d9fDd3b75dE23ab4849C8EEe7E7a2ea2c4'
+  }
+  return '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
+}
+
+export function COMMON_CONTRACT_NAMES(chainId: ChainId, address: string): string {
+  if (getUniAddress(chainId) === address) {
+    return 'UNI';
+  } else if (getGovernAddress(chainId) === address) {
+    return 'Governance';
+  } else if (getTimelock(chainId) === address) {
+    return 'Timelock';
+  }
+  return '';
 }
 
 // TODO: specify merkle distributor for mainnet
@@ -79,8 +93,8 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
 
 export const ADDITIONAL_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.MAINNET]: {
-    '0xA948E86885e12Fb09AfEF8C52142EBDbDf73cD18': [new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap')],
-    '0x561a4717537ff4AF5c687328c0f7E90a319705C0': [new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap')],
+    '0xA948E86885e12Fb09AfEF8C52142EBDbDf73cD18': [new Token(ChainId.MAINNET, getUniAddress(ChainId.MAINNET), 18, 'UNI', 'Uniswap')],
+    '0x561a4717537ff4AF5c687328c0f7E90a319705C0': [new Token(ChainId.MAINNET, getUniAddress(ChainId.MAINNET), 18, 'UNI', 'Uniswap')],
     [FEI.address]: [TRIBE],
     [TRIBE.address]: [FEI],
     [FRAX.address]: [FXS],

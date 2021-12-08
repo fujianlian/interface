@@ -22,5 +22,6 @@ export default function useTransactionDeadline(): BigNumber | undefined {
     }
 
     return undefined
+    // eslint-disable-next-line
   }, [blockTimestamp, ttl])
 }
