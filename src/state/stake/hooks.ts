@@ -1,13 +1,13 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@uniswap/sdk'
 import { useMemo } from 'react'
-import { DAI, UNI, USDC, USDT, WBTC } from '../../constants'
+import { DAI, UNI, USDC, USDT, WBTC, PUSDT } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 
-export const STAKING_GENESIS = 1600387200
+export const STAKING_GENESIS = 1639037693
 
 export const REWARDS_DURATION_DAYS = 60
 
@@ -34,6 +34,12 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [WETH[ChainId.MAINNET], WBTC],
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+    }
+  ],
+  [ChainId.PLATON_TESTNET]: [
+    {
+      tokens: [WETH[ChainId.PLATON_TESTNET], PUSDT],
+      stakingRewardAddress: '0x4d7ec635A8047A2B90206264220DB2a655BDCEd8'
     }
   ]
 }
@@ -177,7 +183,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         const individualRewardRate = getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
 
         const periodFinishSeconds = periodFinishState.result?.[0]?.toNumber()
-        const periodFinishMs = periodFinishSeconds * 1000
+        const periodFinishMs = chainId === ChainId.PLATON_TESTNET ? periodFinishSeconds : periodFinishSeconds * 1000
 
         // compare period end timestamp vs current block timestamp (in seconds)
         const active =
