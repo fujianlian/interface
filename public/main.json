@@ -238,12 +238,12 @@
             "logoURI": "https://gemini.com/images/currencies/icons/default/zrx.svg"
         },
         {
-            "name": "Wrapped LAT",
+            "name": "Wrapped ETH",
             "chainId": 210309,
-            "symbol": "WLAT",
+            "symbol": "WETH",
             "decimals": 18,
             "address": "0xA838575b75a8b7C4A086a656F2d589eFb03109D6",
-            "logoURI": "https://raw.githubusercontent.com/LatticeX-Foundation/Brand-Assets/master/PlatON/LAT-icon/LAT-02.png"
+            "logoURI": "https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
         },
         {
             "name": "USDT",
