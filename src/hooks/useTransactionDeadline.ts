@@ -1,5 +1,5 @@
 import { useActiveWeb3React } from '.'
-import { ChainId } from '@uniswap/sdk'
+import { ChainId } from '@plat-dex/uniswap-sdk'
 import { BigNumber } from 'ethers'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'

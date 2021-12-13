@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@plat-dex/uniswap-sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
@@ -49,14 +49,14 @@ export function getUniAddress(chainId: ChainId): string {
 
 export function getGovernAddress(chainId: ChainId): string {
   if (chainId === ChainId.PLATON_TESTNET) {
-    return '0xB770FB03D9489060fD620fC6B07ae2b468afc72A'
+    return '0x7157e63BcAcfDa09Eb1C33Da88A0D0Bdc2880823'
   }
   return '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
 }
 
 export function getTimelock(chainId: ChainId): string {
   if (chainId === ChainId.PLATON_TESTNET) {
-    return '0x13d049d9fDd3b75dE23ab4849C8EEe7E7a2ea2c4'
+    return '0xb90a71E184454F0eb544BD5e135cD093037649b4'
   }
   return '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 }

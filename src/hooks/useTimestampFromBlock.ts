@@ -1,6 +1,6 @@
 import { useActiveWeb3React } from '.'
 import { useState, useEffect } from 'react'
-import { ChainId } from '@uniswap/sdk'
+import { ChainId } from '@plat-dex/uniswap-sdk'
 
 export function useTimestampFromBlock(block: number | undefined): number | undefined {
   const { library, chainId } = useActiveWeb3React()
