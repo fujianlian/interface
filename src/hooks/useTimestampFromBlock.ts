@@ -1,6 +1,6 @@
 import { useActiveWeb3React } from '.'
 import { useState, useEffect } from 'react'
-import { ChainId } from '@plat-dex/uniswap-sdk'
+import { isPlatOnChains } from '../utils'
 
 export function useTimestampFromBlock(block: number | undefined): number | undefined {
   const { library, chainId } = useActiveWeb3React()
@@ -9,7 +9,7 @@ export function useTimestampFromBlock(block: number | undefined): number | undef
     async function fetchTimestamp() {
       if (block) {
         const blockData = await library?.getBlock(block)
-        if (chainId === ChainId.PLATON_TESTNET) {
+        if (isPlatOnChains(chainId)) {
           blockData && setTimestamp(blockData.timestamp / 1000)
         } else {
           blockData && setTimestamp(blockData.timestamp)

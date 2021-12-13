@@ -131,3 +131,7 @@ export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currenc
   if (currency === ETHER) return true
   return Boolean(currency instanceof Token && defaultTokens[currency.chainId]?.[currency.address])
 }
+
+export function isPlatOnChains(chainId?: ChainId): boolean {
+  return chainId === ChainId.PLATON_TESTNET
+}
