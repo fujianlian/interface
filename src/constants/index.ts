@@ -25,6 +25,10 @@ export const FRAX = new Token(ChainId.MAINNET, '0x853d955aCEf822Db058eb8505911ED
 export const FXS = new Token(ChainId.MAINNET, '0x3432B6A60D23Ca0dFCa7761B7ab56459D9C964D0', 18, 'FXS', 'Frax Share')
 export const renBTC = new Token(ChainId.MAINNET, '0xEB4C2781e4ebA804CE9a9803C67d0893436bB27D', 8, 'renBTC', 'renBTC')
 
+export const rDAI = new Token(ChainId.RINKEBY, '0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735', 18, 'DAI', 'Dai Stablecoin')
+export const rUSDT = new Token(ChainId.RINKEBY, '0xA838575b75a8b7C4A086a656F2d589eFb03109D6', 18, 'USDT', 'Tether USD')
+
+
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320

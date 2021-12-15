@@ -1,6 +1,6 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@uniswap/sdk'
 import { useMemo } from 'react'
-import { DAI, UNI, USDC, USDT, WBTC } from '../../constants'
+import { DAI, UNI, USDC, USDT, WBTC, rUSDT, rDAI } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
@@ -34,6 +34,16 @@ export const STAKING_REWARDS_INFO: {
     {
       tokens: [WETH[ChainId.MAINNET], WBTC],
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+    }
+  ],
+  [ChainId.RINKEBY]: [
+    {
+      tokens: [WETH[ChainId.RINKEBY], rDAI],
+      stakingRewardAddress: '0x67aAC5923b2EcABd0ADE7f284C75f1Fe6D2E6cA7'
+    },
+    {
+      tokens: [WETH[ChainId.RINKEBY], rUSDT],
+      stakingRewardAddress: '0x67aAC5923b2EcABd0ADE7f284C75f1Fe6D2E6cA7'
     }
   ]
 }
