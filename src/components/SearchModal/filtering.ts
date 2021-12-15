@@ -36,7 +36,7 @@ export function filterTokens(tokens: Token[], search: string): Token[] {
 }
 
 export function useSortedTokensByQuery(tokens: Token[] | undefined, searchQuery: string): Token[] {
-  return useMemo(() => {
+  var list = useMemo(() => {
     if (!tokens) {
       return []
     }
@@ -67,4 +67,14 @@ export function useSortedTokensByQuery(tokens: Token[] | undefined, searchQuery:
 
     return [...exactMatches, ...symbolSubtrings, ...rest]
   }, [tokens, searchQuery])
+  var i: number;
+  for (i = 0; i < list.length; i++) {
+    if (list[i].symbol === 'WETH' && list[i].chainId === 4) {
+      list[i] = new Token(4, '0x2d51fd37f175984603A7d6C4758b27D09A1B2227', 18, 'WETH', 'Wrapped Ether')
+    }
+    if (list[i].symbol === 'UNI' && list[i].chainId === 4) {
+      list[i] = new Token(4, '0x6A04AcbD67f6878A1Cc3DdDf7ACc45afA97057b1', 18, 'UNI', 'Uniswap')
+    }
+  }
+  return list
 }
