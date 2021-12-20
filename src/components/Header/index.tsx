@@ -348,9 +348,9 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
             UNI
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
+          {/* <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Vote
-          </StyledNavLink>
+          </StyledNavLink> */}
           <StyledExternalLink id={`stake-nav-link`} href={'https://fujianlian.github.io/info'}>
             Charts <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
